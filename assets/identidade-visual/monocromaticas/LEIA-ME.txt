@@ -1,0 +1,16 @@
+VPC-WEBSISTEMAS E GEOINFORMAÇÃO
+Pacote de símbolos monocromáticos
+
+Conteúdo: 2 símbolos x 7 cores x 10 dimensões = 140 PNGs.
+Todos os arquivos possuem fundo transparente e uma única cor RGB. As divisões internas das matrizes aprovadas são reproduzidas por recortes transparentes, com antisserrilhamento nas bordas.
+
+Cores:
+- preto: #000000
+- branco: #FFFFFF
+- azul-marinho: #071B45
+- azul-tecnologico: #0878D1
+- verde-geoinformacao: #67B900
+- ciano-tecnologico: #11B8D8
+- cinza-prata: #9AAABC
+
+Dimensões: 16px, 24px, 32px, 48px, 64px, 96px, 128px, 256px, 512px, 1024px.

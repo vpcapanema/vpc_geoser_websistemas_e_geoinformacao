@@ -1,0 +1,4 @@
+Backup do site antes da reestruturacao de conteudo.
+Data: 2026-09-07
+Origem: site/app/
+Restaurar: copiar os arquivos de volta para site/app/ preservando a estrutura.

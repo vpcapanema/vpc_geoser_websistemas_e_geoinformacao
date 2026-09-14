@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VPC-WEBSISTEMAS E GEOINFORMAÇÃO — proposta de reestruturação</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+@font-face { font-family:"Exo 2"; src:url("/fonts/exo-2/Exo2-variable.ttf") format("truetype"); font-style:normal; font-weight:100 900; font-display:swap; }
+
+:root { --navy:#071b45; --deep:#03102b; --blue:#0878d1; --cyan:#11b8d8; --green:#67b900; --lime:#8dd500; --silver:#9aaabc; --ink:#162238; --muted:#59677a; --line:#dce5ec; --paper:#f4f8fb; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; color:var(--ink); background:#fff; font:1rem/1.6 Arial,Helvetica,sans-serif; text-rendering:optimizeLegibility; }
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; }
+:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.shell { width:min(1320px,100% - 3rem); margin-inline:auto; }
+h1,h2,h3,p { margin-top:0; }
+h1,h2,h3 { line-height:1.08; text-wrap:balance; }
+
+/* ===== Cabeçalho ===== */
+.site-header { position:sticky; top:0; z-index:50; color:#fff; background:rgb(3 16 43/94%); border-bottom:1px solid rgb(255 255 255/10%); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+.header-inner { min-height:68px; display:flex; align-items:center; gap:2rem; }
+.brand { display:inline-flex; align-items:center; gap:.65rem; flex:0 0 auto; }
+.brand img { width:48px; height:48px; object-fit:contain; }
+.brand span,.footer-brand span { display:grid; line-height:1.06; }
+.brand strong,.footer-brand strong { font-size:.78rem; letter-spacing:.025em; }
+.brand small,.footer-brand small { margin-top:.42rem; color:var(--lime); font-size:.67rem; font-weight:800; letter-spacing:.015em; }
+nav { display:flex; align-items:center; gap:1.35rem; margin-left:auto; }
+nav a { position:relative; color:#cfdaea; font-size:.87rem; font-weight:700; }
+nav a::after { content:""; position:absolute; left:0; right:100%; bottom:-.55rem; height:2px; background:var(--lime); transition:right 160ms ease; }
+nav a:hover::after { right:0; }
+.header-cta { display:inline-flex; align-items:center; gap:.55rem; padding:.7rem 1rem; border:1px solid rgb(255 255 255/25%); border-radius:.35rem; font-size:.85rem; font-weight:700; transition:background 160ms ease,border-color 160ms ease; }
+.header-cta:hover { background:rgb(255 255 255/9%); border-color:var(--cyan); }
+
+/* ===== Hero (réplica estática) ===== */
+.hero { position:relative; overflow:hidden; color:#fff; background:radial-gradient(circle at 74% 38%,#0a3976 0,var(--navy) 28%,var(--deep) 67%); }
+.hero-grid { position:absolute; inset:0; opacity:.13; background-image:linear-gradient(rgb(255 255 255/18%) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255/18%) 1px,transparent 1px); background-size:38px 38px; -webkit-mask-image:linear-gradient(90deg,#000,transparent 82%); mask-image:linear-gradient(90deg,#000,transparent 82%); }
+.hero-layout { position:relative; display:grid; grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr); align-items:center; gap:clamp(2rem,5vw,5rem); min-height:650px; padding-block:3.5rem 4rem; }
+.hero-copy { position:relative; z-index:2; }
+.eyebrow { display:flex; align-items:center; gap:.7rem; }
+.eyebrow span { width:25px; height:2px; background:var(--lime); }
+.eyebrow,.section-kicker { margin:0 0 1.15rem; color:var(--cyan); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+h1 { max-width:760px; margin-bottom:1.6rem; font-size:clamp(3rem,6.1vw,5.5rem); letter-spacing:-.052em; }
+h1 em { color:var(--lime); font-style:normal; }
+.hero-lead { max-width:650px; margin-bottom:2rem; color:#d3dfed; font-size:clamp(1.08rem,1.6vw,1.3rem); line-height:1.65; }
+.hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1.25rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; gap:.65rem; min-height:50px; padding:.8rem 1.2rem; border-radius:.35rem; font-size:.92rem; font-weight:800; transition:transform 160ms ease,box-shadow 160ms ease,background 160ms ease; }
+.button:hover { transform:translateY(-2px); }
+.button-primary { color:var(--deep); background:var(--lime); box-shadow:0 9px 26px rgb(103 185 0/22%); }
+.button-primary:hover { background:#9ae600; }
+.button-light { color:#fff; background:var(--blue); box-shadow:0 10px 29px rgb(3 16 43/18%); }
+.button-light:hover { background:var(--navy); }
+.text-link { display:inline-flex; align-items:center; gap:.5rem; color:#e5edf7; font-size:.92rem; font-weight:700; }
+.text-link:hover { color:var(--cyan); }
+.hero-pillars { display:flex; flex-wrap:wrap; gap:1.2rem; margin-top:2.7rem; color:#b9c9db; font-size:.78rem; font-weight:700; }
+.hero-pillars span { display:inline-flex; align-items:center; gap:.4rem; }
+.hero-pillars i { width:9px; height:9px; border-radius:50%; background:var(--lime); font-style:normal; }
+.hero-visual { position:relative; min-height:480px; display:grid; place-items:center; }
+.hero-space { position:absolute; inset:-6% -6%; width:112%; height:112%; }
+.hero-mark { font-family:"Exo 2",Arial,sans-serif; position:absolute; z-index:4; left:50%; width:max-content; max-width:88%; transform:translateX(-50%); text-align:center; }
+.hero-mark-top { top:21%; z-index:5; transform:translate(-50%,-1.4rem); text-shadow:0 0 2px var(--navy),0 0 5px var(--navy); }
+.hero-mark-top strong { display:block; color:#fff; font-size:clamp(1.4rem,1.76vw,1.68rem); font-weight:600; letter-spacing:.01em; line-height:1.15; }
+.hero-mark-top strong em { color:var(--lime); font-style:normal; }
+.hero-mark-bottom { bottom:8%; }
+.hero-mark-bottom span { display:block; color:#b9c9db; font-size:clamp(.76rem,1vw,.9rem); font-weight:400; line-height:1.35; }
+.logo-frame { position:relative; top:12px; z-index:2; width:min(440px,92%); aspect-ratio:873/641; transform:scale(.92); background-repeat:no-repeat; background-position:47.24% 50.24%; background-size:143.64% 195.63%; background-image:url(/logo-vpc-oficial.png); }
+
+/* ===== Seções ===== */
+.section { padding-block:clamp(5rem,9vw,8rem); }
+.section-light { background:#fff; }
+.section-heading { margin-bottom:3.2rem; }
+.split-heading { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.6fr); gap:4rem; align-items:end; }
+.section-heading h2 { margin-bottom:0; font-size:clamp(2.35rem,4.3vw,4.1rem); letter-spacing:-.045em; }
+.section-heading>p { margin:0; color:var(--muted); font-size:1.02rem; }
+.inverse .section-kicker { color:var(--lime); }
+.inverse h2 { color:#fff; }
+.inverse>p { color:#b7c7d9; }
+
+/* Nível 1 — O que fazemos */
+.doing-intro { max-width:760px; }
+.doing-intro p { color:var(--muted); font-size:1.06rem; line-height:1.7; margin-bottom:1rem; }
+.doing-note { padding:1.15rem 1.35rem; background:var(--paper); border-left:3px solid var(--green); color:var(--ink)!important; font-size:.98rem!important; }
+
+/* Nível 2 — áreas subordinadas, no trilho */
+.areas { position:relative; margin-top:3.2rem; padding-left:3.6rem; border-left:2px solid var(--line); display:grid; gap:2.9rem; }
+.area-block { position:relative; }
+.area-num { position:absolute; left:-4.75rem; top:-.15rem; width:2.3rem; height:2.3rem; display:grid; place-items:center; color:var(--navy); background:#fff; border:2px solid var(--green); border-radius:50%; font-size:.8rem; font-weight:800; letter-spacing:.02em; }
+.area-block h3 { margin-bottom:.85rem; color:var(--navy); font-size:1.45rem; letter-spacing:-.02em; max-width:44ch; }
+.area-block>p { margin:0; color:var(--muted); font-size:1rem; line-height:1.7; max-width:74ch; }
+.area-example { margin-top:1.15rem; padding:1.15rem 1.3rem; background:var(--paper); border-radius:.4rem; }
+.area-example span { display:block; margin-bottom:.5rem; color:var(--green); font-size:.68rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+.area-example p { margin:0; color:var(--muted); font-size:.94rem; line-height:1.68; max-width:74ch; }
+.area-example strong { color:var(--navy); }
+
+/* Nível 1 — VPC-ITA (produto) */
+.section-product { color:#fff; background:linear-gradient(145deg,#061735,#08295a); }
+.product-feature { position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(278px,.95fr); gap:3rem; align-items:center; }
+.product-badge { display:inline-flex; align-items:center; gap:.5rem; margin-bottom:1.2rem; padding:.4rem .85rem; color:var(--deep); background:var(--lime); border-radius:2rem; font-size:.68rem; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+.product-feature h2 { margin-bottom:1.3rem; font-size:clamp(2.35rem,4.3vw,4.1rem); letter-spacing:-.045em; }
+.product-feature h2 em { color:var(--lime); font-style:normal; }
+.product-feature p { max-width:56ch; color:#c9dce4; font-size:1.06rem; line-height:1.7; }
+.product-discover { display:inline-flex; align-items:center; gap:.65rem; margin-top:1.4rem; color:#fff; font-weight:800; border-bottom:1px solid rgb(141 213 0/55%); padding-bottom:.15rem; }
+.product-feature:hover .product-discover { color:var(--lime); }
+.product-visual { display:grid; place-items:center; }
+.ita-symbol { width:min(230px,80%); aspect-ratio:1; display:grid; place-items:center; color:var(--cyan); border:1px solid rgb(17 184 216/40%); border-radius:50%; background:rgb(17 184 216/7%); box-shadow:0 0 0 26px rgb(17 184 216/5%),0 0 0 52px rgb(17 184 216/3%); }
+.ita-symbol svg { width:74%; height:74%; overflow:visible; fill:none; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; }
+.ita-parcel { stroke-width:2; } .ita-leaf { fill:rgb(141 213 0/12%); stroke:var(--lime); stroke-width:3; } .ita-vein { stroke:var(--lime); stroke-width:2; } .ita-check { stroke:#fff; stroke-width:5; }
+
+/* Nível 1 — Clientes */
+.section-clients { background:#fff; }
+.clients-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.client-card { position:relative; min-height:252px; display:grid; grid-template-rows:1fr auto; place-items:center; align-content:center; gap:.85rem; padding:1.5rem; background:#fff; border:1px solid var(--line); }
+.client-logo { width:100%; height:150px; display:grid; place-items:center; }
+.client-logo img { width:auto; height:150px; max-width:100%; object-fit:contain; }
+.client-governo .client-logo img,.client-der .client-logo img { height:110px; }
+.client-name { max-width:100%; margin:0; color:var(--muted); font-size:.73rem; font-weight:700; line-height:1.32; text-align:center; }
+.client-pli { overflow:hidden; background:linear-gradient(135deg,#fff 0 70%,rgb(0 184 110/7%) 70%); }
+.client-pli::before,.client-pli::after { content:""; position:absolute; width:82%; height:2px; left:9%; background:linear-gradient(90deg,#1c3d59 0 64%,#00b86e 64%); }
+.client-pli::before { top:1.15rem; } .client-pli::after { bottom:1.15rem; transform:scaleX(-1); }
+.pli-wordmark { display:grid; place-items:center; gap:.35rem; text-align:center; }
+.pli-wordmark span { color:#1c3d59; font-size:.72rem; font-weight:700; max-width:15ch; line-height:1.25; }
+.pli-wordmark strong { color:#00b86e; font-size:1.25rem; letter-spacing:.02em; }
+
+/* Nível 1 — Sobre */
+.section-about { position:relative; overflow:hidden; color:#fff; background:linear-gradient(145deg,#061735,#08295a); }
+.about-layout { display:grid; grid-template-columns:minmax(231px,.85fr) minmax(0,1.15fr); gap:6rem; align-items:center; }
+.about-mark { display:grid; place-items:center; opacity:.9; }
+.about-mark img { width:340px; }
+.about-copy h2 { margin-bottom:1.2rem; color:#fff; font-size:clamp(2.35rem,4.3vw,4.1rem); letter-spacing:-.045em; }
+.about-lead { color:#d3dfed; margin-block:1.5rem 2rem; font-size:1.08rem; line-height:1.7; }
+.founder-card { display:flex; gap:1rem; margin-top:2rem; padding:1.5rem; background:rgb(3 16 43/55%); border:1px solid rgb(255 255 255/13%); border-radius:.7rem; }
+.founder-icon { flex:0 0 auto; display:grid; place-items:center; width:34px; height:34px; color:var(--navy); background:var(--lime); border-radius:50%; font-size:1rem; }
+.founder-card strong { display:block; color:#fff; font-size:1.05rem; }
+.founder-card span { display:block; color:var(--cyan); font-size:.86rem; font-weight:700; }
+.founder-card p { margin:.8rem 0 0; color:#b7c7d9; font-size:.9rem; line-height:1.6; }
+.founder-link { display:inline-flex; align-items:center; gap:.45rem; margin-top:1rem; color:var(--lime); font-size:.86rem; font-weight:800; }
+.founder-link:hover { color:#fff; }
+
+/* Nível 1 — Contato */
+.contact { color:var(--navy); background:#fff; padding-block:clamp(3.5rem,5.45vw,5.7rem); }
+.contact .section-kicker { color:var(--blue); }
+.contact-layout { position:relative; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(217px,.6fr); align-items:center; gap:5rem; padding-bottom:2rem; }
+.contact h2 { margin-bottom:1.2rem; font-size:clamp(2.35rem,4.3vw,4.1rem); letter-spacing:-.045em; }
+.contact p { max-width:700px; margin:0; color:var(--muted); font-size:1.05rem; line-height:1.7; }
+.contact-action { display:grid; justify-items:start; gap:.85rem; }
+.contact-label { color:var(--blue); font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.contact-email { color:var(--navy); font-size:clamp(1.02rem,2vw,1.28rem); font-weight:800; border-bottom:1px solid rgb(7 76 145/30%); }
+.back-to-top { position:absolute; right:-1rem; bottom:-1.6rem; display:inline-flex; align-items:center; gap:.4rem; color:var(--blue); font-size:.78rem; font-weight:800; }
+
+/* Rodapé */
+footer { color:#b7c4d5; background:var(--deep); }
+.footer-inner { min-height:83px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.28rem; padding-block:.55rem; text-align:center; }
+.footer-brand { position:relative; padding-left:calc(35px + .35em); color:#fff; }
+.footer-brand span { justify-items:start; text-align:left; }
+.footer-brand small { margin-top:.28rem; }
+.footer-brand img { position:absolute; left:0; top:50%; width:35px; height:35px; object-fit:contain; transform:translateY(-50%); }
+.footer-inner>p { margin:0; font-size:.75rem; line-height:1.2; }
+.footer-link { color:#b7c4d5; border-bottom:1px solid rgb(183 196 213/35%); }
+.footer-link:hover { color:#fff; }
+
+@media (max-width:1020px) {
+  nav { display:none; } .header-cta { margin-left:auto; }
+  .hero-layout { grid-template-columns:1fr; min-height:auto; padding-top:3.5rem; }
+  .hero-copy { max-width:760px; order:2; } .hero-visual { min-height:410px; order:1; }
+  .logo-frame { width:380px; }
+  .split-heading,.about-layout,.contact-layout,.product-feature { grid-template-columns:1fr; gap:2.5rem; }
+  .clients-grid { grid-template-columns:repeat(2,1fr); }
+  .about-mark { order:2; } .about-mark img { width:302px; }
+}
+@media (max-width:720px) {
+  .header-inner { min-height:60px; gap:.6rem; }
+  .brand img { width:38px; height:38px; } .brand strong { font-size:.61rem; letter-spacing:0; }
+  .brand small { max-width:159px; margin-top:.32rem; font-size:.53rem; line-height:1.2; }
+  h1 { font-size:clamp(2.8rem,14vw,4.4rem); }
+  .shell { width:min(100% - 2rem,1320px); }
+  .hero-actions { align-items:flex-start; flex-direction:column; }
+  .hero-pillars { display:grid; gap:.55rem; }
+  .hero-visual { min-height:340px; } .logo-frame { width:min(315px,88vw); }
+  .areas { padding-left:2.6rem; }
+  .area-num { left:-3.75rem; width:2rem; height:2rem; font-size:.72rem; }
+  .clients-grid { grid-template-columns:1fr; }
+  .back-to-top { right:0; bottom:-2rem; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="#inicio" aria-label="VPC — início">
+      <img src="/simbolo-vpc-satelite.png" width="64" height="64" alt="">
+      <span><strong>VPC-WEBSISTEMAS E GEOINFORMAÇÃO</strong><small>Inteligência em geoprocessamento e sensoriamento remoto.</small></span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#fazemos">O que fazemos</a><a href="#vpc-ita">VPC-ITA</a><a href="#clientes">Clientes</a><a href="#sobre">Sobre</a><a href="/contato.html">Contato</a>
+    </nav>
+    <a class="header-cta" href="#contato">Fale sobre seu desafio →</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HERO (preservado) ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="shell hero-layout">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> Inteligência em geoprocessamento e sensoriamento remoto.</p>
+      <h1>Soluções construídas para o seu <em>contexto.</em></h1>
+      <p class="hero-lead">A VPC transforma problemas técnicos, dados e processos em sistemas digitais sob medida — da concepção à operação.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#fazemos">Conheça nossa abordagem ↓</a>
+        <a class="text-link" href="#contato">Fale sobre seu desafio →</a>
+      </div>
+      <div class="hero-pillars" aria-label="Pilares da atuação">
+        <span><i></i> Rigor metodológico</span>
+        <span><i></i> Rastreabilidade</span>
+        <span><i></i> Autonomia tecnológica</span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="Identidade visual da VPC">
+      <svg class="hero-space" viewBox="0 0 720 480" aria-hidden="true">
+        <defs>
+          <radialGradient id="neb"><stop stop-color="#2584ba" stop-opacity=".13"/><stop offset=".5" stop-color="#2551a3" stop-opacity=".05"/><stop offset="1" stop-color="#2551a3" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow"><stop stop-color="#e4f4ff" stop-opacity=".8"/><stop offset=".12" stop-color="#c2e6ff" stop-opacity=".4"/><stop offset=".4" stop-color="#84cfff" stop-opacity=".1"/><stop offset="1" stop-color="#84cfff" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="420" cy="230" rx="320" ry="140" transform="rotate(-32 420 230)" fill="url(#neb)"/>
+        <ellipse cx="280" cy="270" rx="240" ry="65" transform="rotate(-32 280 270)" fill="url(#neb)" opacity=".5"/>
+        <g fill="#d5e9f6">
+          <circle cx="88" cy="64" r="1" opacity=".6"/><circle cx="196" cy="132" r=".6" opacity=".5"/><circle cx="312" cy="58" r="1.6" opacity=".7"/>
+          <circle cx="440" cy="150" r=".6" opacity=".4"/><circle cx="556" cy="92" r="1" opacity=".6"/><circle cx="648" cy="196" r=".6" opacity=".5"/>
+          <circle cx="132" cy="288" r="1" opacity=".5"/><circle cx="248" cy="396" r=".6" opacity=".45"/><circle cx="392" cy="332" r="1.6" opacity=".6"/>
+          <circle cx="512" cy="428" r=".6" opacity=".4"/><circle cx="608" cy="352" r="1" opacity=".55"/><circle cx="60" cy="420" r=".6" opacity=".4"/>
+        </g>
+        <g fill="url(#glow)"><circle cx="104" cy="111" r="8"/><circle cx="604" cy="337" r="7"/><circle cx="521" cy="56" r="6"/></g>
+        <g fill="#e4f4ff" opacity=".85"><circle cx="104" cy="111" r="1.1"/><circle cx="604" cy="337" r=".9"/><circle cx="521" cy="56" r=".8"/></g>
+        <ellipse cx="360" cy="240" rx="272" ry="128" transform="rotate(-25 360 240)" fill="none" stroke="rgb(141 213 0 / .5)" stroke-width="3"/>
+        <ellipse cx="360" cy="240" rx="272" ry="128" transform="rotate(25 360 240)" fill="none" stroke="rgb(17 184 216 / .45)" stroke-width="3"/>
+      </svg>
+      <div class="hero-mark hero-mark-top"><strong>VPC-<em>WEBSISTEMAS</em><br><em>E GEOINFORMAÇÃO</em></strong></div>
+      <div class="logo-frame" role="img" aria-label="Globo com satélite, símbolo da VPC"></div>
+      <div class="hero-mark hero-mark-bottom"><span>Inteligência em geoprocessamento<br>e sensoriamento remoto</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NÍVEL 1 — O QUE FAZEMOS (contém as 5 áreas) ===== -->
+<section class="section section-light" id="fazemos">
+  <div class="shell">
+    <div class="section-heading">
+      <p class="section-kicker">O que fazemos</p>
+      <h2>Concepção, Desenvolvimento e Implantação de Soluções</h2>
+    </div>
+    <div class="doing-intro">
+      <p>A VPC desenvolve <strong>sistemas web, plataformas de dados, aplicativos de campo, painéis de análise, WebGIS, integrações entre sistemas e automações</strong> — sob medida, para empresas, órgãos públicos e profissionais.</p>
+      <p>Partimos de um problema concreto: entendemos a demanda, desenhamos a solução, desenvolvemos e integramos aos sistemas que você já usa, implantamos e documentamos. Você recebe o sistema em operação, a documentação de como ele funciona e a equipe apta a utilizá-lo — e continuamos evoluindo a solução conforme surgirem novas necessidades.</p>
+      <p class="doing-note"><strong>As áreas a seguir reúnem exemplos do que já construímos. Elas não delimitam nossa atuação:</strong> dentro do escopo de engenharia de software, geoprocessamento e sensoriamento remoto, a solução é definida pelo problema que você apresentar.</p>
+    </div>
+
+    <div class="areas">
+
+      <article class="area-block">
+        <div class="area-num">01</div>
+        <h3>Governança, Estruturação e Armazenamento de Dados</h3>
+        <p><strong>Desenvolvemos repositórios e catálogos de dados:</strong> o sistema onde os arquivos da sua organização ficam guardados, descritos e pesquisáveis, com controle de quem acessa, registro do que foi feito, área de envio e publicação automática dos mapas.</p>
+        <p>Com isso, o seu acervo técnico para de morar em pasta de rede e em computador pessoal. Estudos, bases e mapas continuam encontráveis depois que as pessoas mudam de área ou saem da equipe — e você não contrata de novo um trabalho que já existe.</p>
+        <div class="area-example">
+          <span>Exemplo</span>
+          <p>No <strong>SIGMA-PLI</strong>, repositório do conhecimento técnico do Plano de Logística e Investimentos de São Paulo, qualquer pessoa autorizada descobre em minutos o que existe sobre um tema, quem produziu, quando, e se aquela é a versão vigente. Mapas passam a ser visualizáveis assim que entram no sistema, e é possível ver de onde cada estudo derivou — inclusive quais informações dependem de uma fonte única.</p>
+        </div>
+      </article>
+
+      <article class="area-block">
+        <div class="area-num">02</div>
+        <h3>Análise e Apoio à Decisão</h3>
+        <p><strong>Desenvolvemos sistemas de priorização e ranqueamento:</strong> o cadastro das alternativas, a matriz de critérios com seus pesos, o cruzamento com dados do território e o ranking com a justificativa de cada posição. Também construímos ferramentas menores, de ponderação de critérios e de avaliação de indicadores.</p>
+        <p>Serve para você ordenar sua carteira de projetos, distribuir orçamento, escolher fornecedor, comparar alternativas técnicas ou definir onde instalar uma nova unidade. A sua escolha passa a ter critério registrado e peso declarado — e o caminho pode ser refeito quando alguém questionar.</p>
+        <div class="area-example">
+          <span>Exemplo</span>
+          <p>Com o <strong>SICARD</strong>, antes de comprometer orçamento o gestor sabe quais demandas esbarram em impedimento legal, quais vão exigir licenciamento federal demorado e quais atendem mais população, mais tráfego e mais atividade econômica. A ordem da carteira sai justificada critério a critério, sobre uma matriz de cinquenta critérios com premissa, fonte e método declarados — e pode ser reaberta e conferida meses depois.</p>
+        </div>
+      </article>
+
+      <article class="area-block">
+        <div class="area-num">03</div>
+        <h3>Mudanças Climáticas, Desastres Naturais e Resiliência da Infraestrutura</h3>
+        <p><strong>Desenvolvemos sistemas de monitoramento e alerta:</strong> o painel que acompanha condições de risco em tempo real sobre o seu território ou a sua malha, com níveis de alerta, mapa, histórico e consulta a eventos passados. Junto dele, aplicativos de campo para registro de ocorrências e roteirizadores que desviam das áreas afetadas.</p>
+        <p>Você decide interditar, desviar ou acionar equipe com horas de antecedência, e não depois que a pista já cedeu.</p>
+        <div class="area-example">
+          <span>Exemplo</span>
+          <p>O <strong>PLI-HazardTrack</strong> informa qual trecho rodoviário está sob alerta, em que nível e o que o plano de contingência prevê para aquele nível — considerando a chuva já acumulada e a prevista. Junto dele, o <strong>PLI Reporta</strong> traz a ocorrência de quem está no campo, e o <strong>PLI Smart Router</strong> entrega a rota alternativa já calculada, mostrando quanto tempo e quanto quilômetro custa evitar a área de risco.</p>
+        </div>
+      </article>
+
+      <article class="area-block">
+        <div class="area-num">04</div>
+        <h3>Análise Estatística, Espacial e Inteligência Territorial</h3>
+        <p><strong>Desenvolvemos painéis de análise e WebGIS:</strong> o ambiente onde a sua equipe filtra, cruza bases diferentes, vê o resultado no mapa e no gráfico e exporta em planilha ou imagem. Quando o que você precisa é o estudo e não o sistema, entregamos a análise pronta, com mapas interativos e método documentado.</p>
+        <p>Perguntas que dependiam de semanas de trabalho especializado passam a ser respondidas em minutos, pela sua própria equipe — sem intermediário e sem conhecimento de programação.</p>
+        <div class="area-example">
+          <span>Exemplo</span>
+          <p>Na <strong>FAD-Stats</strong>, um técnico verifica sozinho se a região que mais exporta é também a que mais emprega, como a produção de uma cultura evoluiu em uma década ou onde a atividade se concentra no território. Bases de produção agropecuária, comércio exterior, emprego formal e transporte de cargas são cruzadas automaticamente, apesar de cada uma nomear as coisas à sua maneira. O resultado sai em mapa, gráfico ou planilha, pronto para o relatório.</p>
+        </div>
+      </article>
+
+      <article class="area-block">
+        <div class="area-num">05</div>
+        <h3>Engenharia de Software e Integração de Sistemas</h3>
+        <p><strong>Desenvolvemos sistemas web e aplicativos de campo sob medida</strong>, conectamos sistemas que não conversam entre si e automatizamos rotinas — extração de informação de documentos, processamento de arquivos e tarefas repetitivas que hoje consomem horas da sua equipe.</p>
+        <p>A sua informação passa a ser registrada uma única vez, tem um dono claro e chega sozinha onde precisa chegar. Acabam o retrabalho de digitação, a divergência entre cadastros e a dúvida sobre qual sistema está com o dado certo.</p>
+        <div class="area-example">
+          <span>Exemplo</span>
+          <p>No ecossistema do PLI-SP, uma pessoa ou instituição é cadastrada uma vez, no <strong>SIGMA-PLI</strong>, e todos os demais sistemas a reconhecem — sem cópias e sem cadastro duplicado. O que é registrado em campo aparece automaticamente nos sistemas que dependem daquela informação, e o aplicativo usado na estrada continua funcionando sem sinal, guardando o registro até a conexão voltar. Em automação, desenvolvemos também um sistema que extrai e indexa o conteúdo de atas de reunião, conectando decisões, temas, responsáveis e ações.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== NÍVEL 1 — VPC-ITA (produto próprio) ===== -->
+<section class="section section-product" id="vpc-ita">
+  <div class="shell">
+    <a class="product-feature" href="/ita" aria-label="Conheça a VPC-ITA — Inteligência Territorial e Auditoria Ambiental">
+      <div>
+        <span class="product-badge">Solução própria</span>
+        <p class="section-kicker" style="color:var(--cyan)">Inteligência Territorial e Auditoria Ambiental</p>
+        <h2>Conheça o território,<br><em>assuma o risco depois.</em></h2>
+        <p>Um imóvel rural pode parecer regular até que os dados contem outra história. A VPC-ITA transforma o perímetro em um diagnóstico territorial documentado, a partir de fontes oficiais, sensoriamento remoto e processamento geoespacial rastreável — para quem precisa avaliar antes de comprar, financiar, licenciar ou assumir responsabilidade técnica.</p>
+        <span class="product-discover">O que existe dentro deste perímetro? →</span>
+      </div>
+      <div class="product-visual" aria-hidden="true">
+        <div class="ita-symbol">
+          <svg viewBox="0 0 240 240">
+            <path class="ita-parcel" d="M48 52 139 31l57 45-15 102-89 31-54-61Z"/>
+            <path class="ita-leaf" d="M76 150c5-50 38-80 91-82-4 49-34 82-91 82Z"/>
+            <path class="ita-vein" d="m82 145 68-61M112 119l-2-26M128 104l27 3"/>
+            <path class="ita-check" d="m91 161 20 19 43-48"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== NÍVEL 1 — CLIENTES ===== -->
+<section class="section section-clients" id="clientes">
+  <div class="shell">
+    <div class="section-heading split-heading">
+      <div><p class="section-kicker">Clientes atendidos</p><h2>Tecnologia aplicada ao planejamento logístico de São Paulo.</h2></div>
+      <p>Entre os trabalhos já realizados, o de maior porte foi desenvolvido para o Governo do Estado de São Paulo, em três instâncias, no âmbito do PLI-SP 2050.</p>
+    </div>
+    <div class="clients-grid">
+      <article class="client-card client-governo">
+        <div class="client-logo"><img src="/clientes/governo-sp-display.png" alt="Marca oficial — Governo do Estado de São Paulo"></div>
+        <p class="client-name">Governo do Estado de São Paulo</p>
+      </article>
+      <article class="client-card client-semil">
+        <div class="client-logo"><img src="/clientes/semil-sp-display.png" alt="Marca oficial — Secretaria de Meio Ambiente, Infraestrutura e Logística"></div>
+        <p class="client-name">SEMIL — Subsecretaria de Logística e Transporte</p>
+      </article>
+      <article class="client-card client-der">
+        <div class="client-logo"><img src="/clientes/der-sp-display.png" alt="Marca oficial — Departamento de Estradas de Rodagem"></div>
+        <p class="client-name">DER/SP — Departamento de Estradas de Rodagem</p>
+      </article>
+      <article class="client-card client-pli">
+        <div class="pli-wordmark"><span>Plano de Logística e Investimentos</span><strong>PLI/SP-2050</strong></div>
+        <p class="client-name">Programa no qual os sistemas operam</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NÍVEL 1 — SOBRE ===== -->
+<section class="section section-about" id="sobre">
+  <div class="shell about-layout">
+    <div class="about-mark" aria-hidden="true"><img src="/simbolo-vpc-satelite.png" alt="" width="520" height="520"></div>
+    <div class="about-copy">
+      <p class="section-kicker" style="color:var(--lime)">Sobre a VPC</p>
+      <h2>Conhecimento técnico-científico com visão de território.</h2>
+      <p class="about-lead">A VPC-WEBSISTEMAS E GEOINFORMAÇÃO é conduzida por Vinicius do Prado Capanema e reúne geoprocessamento, sensoriamento remoto, análise de dados e engenharia de software para criar soluções digitais sob medida. Quem conversa com o cliente é quem projeta e constrói o sistema.</p>
+      <div class="founder-card">
+        <div class="founder-icon">◆</div>
+        <div>
+          <strong>Vinicius do Prado Capanema</strong>
+          <span>Engenheiro e desenvolvedor de soluções geoespaciais</span>
+          <p>Engenheiro florestal pela UNEMAT, especialista em Georreferenciamento pela AJES/INCRA, MBA em Gestão de Projetos pela UNOPAR, mestre e doutor em Sensoriamento Remoto pelo INPE.</p>
+          <a class="founder-link" href="https://vpcapanema.github.io/curriculo_viniciuscapanema/" target="_blank" rel="noopener noreferrer">Conheça o currículo completo ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NÍVEL 1 — CONTATO ===== -->
+<section class="contact" id="contato">
+  <div class="shell contact-layout">
+    <div>
+      <p class="section-kicker">Contato comercial</p>
+      <h2>Fale com quem vai construir a sua solução.</h2>
+      <p>Converse com a VPC sobre o problema que sua organização precisa resolver.</p>
+    </div>
+    <div class="contact-action">
+      <span class="contact-label">Fale com a VPC</span>
+      <a class="contact-email" href="mailto:comercial@vpc-websistemas.com.br?subject=Contato%20comercial%20—%20VPC-WEBSISTEMAS">comercial@vpc-websistemas.com.br</a>
+      <a class="button button-light" href="/contato.html">Ver formas de contato →</a>
+    </div>
+    <a class="back-to-top" href="#inicio">Voltar ao início ↑</a>
+  </div>
+</section>
+
+</main>
+
+<footer id="rodape">
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <img src="/simbolo-vpc-satelite.png" width="64" height="64" alt="">
+      <span><strong>VPC-WEBSISTEMAS E GEOINFORMAÇÃO</strong><small>Inteligência em geoprocessamento e sensoriamento remoto.</small></span>
+    </div>
+    <p>Vinicius do Prado Capanema Ltda.</p>
+    <p>CNPJ 57.286.005/0001-40 · © 2026 · Todos os direitos reservados. · <a class="footer-link" href="/privacidade">Política de Privacidade</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

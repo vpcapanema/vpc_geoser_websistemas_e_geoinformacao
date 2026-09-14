@@ -1,0 +1,11 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# env / secrets
+.env
+.env.*
+*.pem
+
+# stray node_modules outside site/
+node_modules/

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contato — VPC-WEBSISTEMAS E GEOINFORMAÇÃO</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+@font-face { font-family:"Exo 2"; src:url("/fonts/exo-2/Exo2-variable.ttf") format("truetype"); font-style:normal; font-weight:100 900; font-display:swap; }
+
+:root { --navy:#071b45; --deep:#03102b; --blue:#0878d1; --cyan:#11b8d8; --green:#67b900; --lime:#8dd500; --ink:#162238; --muted:#59677a; --line:#dce5ec; --paper:#f4f8fb; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; color:var(--ink); background:#fff; font:1rem/1.6 Arial,Helvetica,sans-serif; text-rendering:optimizeLegibility; }
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; }
+:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
+.shell { width:min(1320px,100% - 3rem); margin-inline:auto; }
+h1,h2,h3,p { margin-top:0; }
+h1,h2,h3 { line-height:1.08; text-wrap:balance; }
+
+.site-header { position:sticky; top:0; z-index:50; color:#fff; background:rgb(3 16 43/94%); border-bottom:1px solid rgb(255 255 255/10%); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+.header-inner { min-height:68px; display:flex; align-items:center; gap:2rem; }
+.brand { display:inline-flex; align-items:center; gap:.65rem; flex:0 0 auto; }
+.brand img { width:48px; height:48px; object-fit:contain; }
+.brand span,.footer-brand span { display:grid; line-height:1.06; }
+.brand strong,.footer-brand strong { font-size:.78rem; letter-spacing:.025em; }
+.brand small,.footer-brand small { margin-top:.42rem; color:var(--lime); font-size:.67rem; font-weight:800; letter-spacing:.015em; }
+nav { display:flex; align-items:center; gap:1.35rem; margin-left:auto; }
+nav a { position:relative; color:#cfdaea; font-size:.87rem; font-weight:700; }
+nav a::after { content:""; position:absolute; left:0; right:100%; bottom:-.55rem; height:2px; background:var(--lime); transition:right 160ms ease; }
+nav a:hover::after { right:0; }
+.header-cta { display:inline-flex; align-items:center; gap:.55rem; padding:.7rem 1rem; border:1px solid rgb(255 255 255/25%); border-radius:.35rem; font-size:.85rem; font-weight:700; }
+.header-cta:hover { background:rgb(255 255 255/9%); border-color:var(--cyan); }
+
+/* Abertura */
+.ct-hero { position:relative; overflow:hidden; color:#fff; background:radial-gradient(circle at 74% 38%,#0a3976 0,var(--navy) 28%,var(--deep) 67%); padding-block:clamp(3.5rem,6vw,5.5rem); }
+.ct-grid-bg { position:absolute; inset:0; opacity:.13; background-image:linear-gradient(rgb(255 255 255/18%) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255/18%) 1px,transparent 1px); background-size:38px 38px; -webkit-mask-image:linear-gradient(90deg,#000,transparent 82%); mask-image:linear-gradient(90deg,#000,transparent 82%); }
+.ct-hero .shell { position:relative; }
+.eyebrow { display:flex; align-items:center; gap:.7rem; margin:0 0 1.15rem; color:var(--cyan); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+.eyebrow span { width:25px; height:2px; background:var(--lime); }
+.ct-hero h1 { max-width:900px; margin-bottom:1.4rem; font-size:clamp(2.6rem,5.4vw,4.6rem); letter-spacing:-.05em; }
+.ct-hero h1 em { color:var(--lime); font-style:normal; }
+.ct-lead { max-width:640px; margin:0; color:#d3dfed; font-size:clamp(1.05rem,1.5vw,1.25rem); line-height:1.65; }
+
+/* Cartões por finalidade */
+.section { padding-block:clamp(4rem,7vw,6.5rem); }
+.section-kicker { margin:0 0 1.15rem; color:var(--blue); font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+.ct-heading h2 { margin-bottom:.9rem; font-size:clamp(1.9rem,3.2vw,2.9rem); letter-spacing:-.04em; color:var(--navy); }
+.ct-heading p { max-width:640px; margin:0 0 3rem; color:var(--muted); font-size:1.05rem; }
+.ct-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
+.ct-card { display:flex; flex-direction:column; min-height:264px; padding:2rem 1.9rem; background:#fff; transition:background 160ms ease; }
+.ct-card:hover { background:var(--paper); }
+.ct-card h3 { margin-bottom:1rem; color:var(--navy); font-size:1.42rem; letter-spacing:-.025em; line-height:1.2; }
+.ct-card>p { margin:0; color:var(--muted); font-size:.96rem; line-height:1.66; }
+.ct-link { display:inline-flex; align-items:center; gap:.5rem; margin-top:auto; padding-top:1.4rem; color:var(--blue); font-size:.92rem; font-weight:800; }
+.ct-card:hover .ct-link { color:var(--navy); }
+
+/* Faixa secundária */
+.ct-secondary { background:var(--paper); border-top:1px solid var(--line); }
+.ct-sec-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2.5rem; }
+.ct-sec-item h3 { margin-bottom:.5rem; color:var(--navy); font-size:1.02rem; }
+.ct-sec-item p { margin:0 0 .6rem; color:var(--muted); font-size:.9rem; line-height:1.6; }
+.ct-sec-item a { color:var(--blue); font-weight:700; font-size:.9rem; border-bottom:1px solid rgb(7 76 145/25%); }
+
+/* Fecho */
+.ct-close { color:#fff; background:linear-gradient(145deg,#061735,#08295a); padding-block:clamp(3.5rem,5.5vw,5rem); }
+.ct-close-inner { display:flex; align-items:end; justify-content:space-between; gap:3rem; flex-wrap:wrap; }
+.ct-close h2 { margin:0 0 .8rem; font-size:clamp(1.7rem,2.6vw,2.4rem); letter-spacing:-.04em; }
+.ct-close p { margin:0; max-width:56ch; color:#b7c7d9; font-size:1.02rem; }
+.ct-close .section-kicker { color:var(--lime); }
+.button { display:inline-flex; align-items:center; justify-content:center; gap:.65rem; min-height:50px; padding:.8rem 1.4rem; border-radius:.35rem; font-size:.92rem; font-weight:800; color:var(--deep); background:var(--lime); box-shadow:0 9px 26px rgb(103 185 0/22%); transition:transform 160ms ease,background 160ms ease; }
+.button:hover { transform:translateY(-2px); background:#9ae600; }
+
+footer { color:#b7c4d5; background:var(--deep); }
+.footer-inner { min-height:83px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:.28rem; padding-block:.55rem; text-align:center; }
+.footer-brand { position:relative; padding-left:calc(35px + .35em); color:#fff; }
+.footer-brand span { justify-items:start; text-align:left; }
+.footer-brand small { margin-top:.28rem; }
+.footer-brand img { position:absolute; left:0; top:50%; width:35px; height:35px; object-fit:contain; transform:translateY(-50%); }
+.footer-inner>p { margin:0; font-size:.75rem; line-height:1.2; }
+.footer-link { color:#b7c4d5; border-bottom:1px solid rgb(183 196 213/35%); }
+.footer-link:hover { color:#fff; }
+
+@media (max-width:1020px) {
+  nav { display:none; } .header-cta { margin-left:auto; }
+  .ct-cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .ct-sec-grid { grid-template-columns:1fr; gap:1.8rem; }
+  .ct-close-inner { flex-direction:column; align-items:flex-start; }
+}
+@media (max-width:720px) {
+  .shell { width:min(100% - 2rem,1320px); }
+  .ct-cards { grid-template-columns:1fr; }
+  .ct-card { min-height:auto; }
+  .ct-hero h1 { font-size:clamp(2.2rem,10vw,3.2rem); }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition-duration:.01ms!important; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/proposta.html" aria-label="VPC — início">
+      <img src="/simbolo-vpc-satelite.png" width="64" height="64" alt="">
+      <span><strong>VPC-WEBSISTEMAS E GEOINFORMAÇÃO</strong><small>Inteligência em geoprocessamento e sensoriamento remoto.</small></span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="/proposta.html#fazemos">O que fazemos</a><a href="/proposta.html#vpc-ita">VPC-ITA</a><a href="/proposta.html#clientes">Clientes</a><a href="/proposta.html#sobre">Sobre</a><a href="/contato.html">Contato</a>
+    </nav>
+    <a class="header-cta" href="mailto:comercial@vpc-websistemas.com.br">Fale conosco →</a>
+  </div>
+</header>
+
+<main>
+
+<section class="ct-hero">
+  <div class="ct-grid-bg" aria-hidden="true"></div>
+  <div class="shell">
+    <p class="eyebrow"><span></span> Contato</p>
+    <h1>Fale com quem vai construir a <em>sua solução.</em></h1>
+    <p class="ct-lead">Escolha abaixo o assunto que corresponde ao seu caso. Cada mensagem chega já identificada, e você recebe uma resposta objetiva.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="ct-heading">
+      <p class="section-kicker">Para quem</p>
+      <h2>Comece por quem você é.</h2>
+      <p>Cada perfil demanda uma conversa diferente. Encontre o seu abaixo — a mensagem chega já identificada e a resposta vem direta ao ponto.</p>
+    </div>
+
+    <div class="ct-cards">
+
+      <article class="ct-card">
+        <h3>Empresas, órgãos públicos e profissionais</h3>
+        <p>Você tem um problema técnico, territorial ou operacional e quer avaliar se um sistema resolve. Conversamos sobre o contexto, o que já existe e o que seria necessário construir.</p>
+        <a class="ct-link" href="mailto:comercial@vpc-websistemas.com.br?subject=Novo%20projeto%20—%20desenvolvimento%20de%20solução">Desenvolver uma solução →</a>
+      </article>
+
+      <article class="ct-card">
+        <h3>Produtores, compradores, consultorias e crédito rural</h3>
+        <p>Você precisa saber o que existe dentro de um perímetro antes de comprar, financiar, licenciar ou assumir responsabilidade técnica. É o canal da VPC-ITA.</p>
+        <a class="ct-link" href="mailto:comercial@vpc-websistemas.com.br?subject=VPC-ITA%20—%20avaliação%20de%20imóvel%20rural">Avaliar um imóvel rural →</a>
+      </article>
+
+      <article class="ct-card">
+        <h3>Setores de compras, licitações e contratos</h3>
+        <p>Sua organização precisa de dados cadastrais, documentação de habilitação, atestados de capacidade técnica ou esclarecimentos para instruir um processo de contratação.</p>
+        <a class="ct-link" href="mailto:comercial@vpc-websistemas.com.br?subject=Contratação%20pública%20—%20documentação%20e%20esclarecimentos">Solicitar documentação →</a>
+      </article>
+
+      <article class="ct-card">
+        <h3>Consultorias, engenharia e empresas de tecnologia</h3>
+        <p>Sua empresa está montando uma proposta e precisa de capacidade em geoprocessamento, sensoriamento remoto ou desenvolvimento para compor o escopo.</p>
+        <a class="ct-link" href="mailto:comercial@vpc-websistemas.com.br?subject=Parceria%20técnica%20—%20composição%20de%20proposta">Propor parceria técnica →</a>
+      </article>
+
+      <article class="ct-card">
+        <h3>Clientes com solução implantada</h3>
+        <p>Você já utiliza uma solução desenvolvida pela VPC e precisa de suporte, ajuste, evolução de funcionalidade ou orientação de uso.</p>
+        <a class="ct-link" href="mailto:comercial@vpc-websistemas.com.br?subject=Sistema%20em%20operação%20—%20suporte%20e%20evolução">Falar sobre o sistema →</a>
+      </article>
+
+      <article class="ct-card">
+        <h3>Imprensa e demais interessados</h3>
+        <p>Comunicação institucional, apresentação de fornecedor ou qualquer assunto que não se enquadre nos anteriores.</p>
+        <a class="ct-link" href="mailto:comercial@vpc-websistemas.com.br?subject=Contato%20—%20VPC-WEBSISTEMAS">Enviar mensagem →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="section ct-secondary">
+  <div class="shell ct-sec-grid">
+    <div class="ct-sec-item">
+      <h3>Identificação da empresa</h3>
+      <p>Vinicius do Prado Capanema Ltda.<br>CNPJ 57.286.005/0001-40<br>Nome fantasia: VPC-WEBSISTEMAS E GEOINFORMAÇÃO</p>
+    </div>
+    <div class="ct-sec-item">
+      <h3>Privacidade e proteção de dados</h3>
+      <p>Para exercer direitos previstos na Lei Geral de Proteção de Dados ou tratar de assuntos de privacidade.</p>
+      <a href="mailto:comercial@vpc-websistemas.com.br?subject=Privacidade%20e%20proteção%20de%20dados%20—%20LGPD">Falar sobre privacidade</a> · <a href="/privacidade">Política de Privacidade</a>
+    </div>
+    <div class="ct-sec-item">
+      <h3>Prazo de resposta</h3>
+      <p>Todas as mensagens são lidas e respondidas. Assuntos comerciais têm prioridade; solicitações de documentação para contratação são atendidas conforme o prazo do processo informado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ct-close">
+  <div class="shell ct-close-inner">
+    <div>
+      <p class="section-kicker">Não sabe por onde começar?</p>
+      <h2>Escreva sem formalidade.</h2>
+      <p>Se o seu caso não se encaixa em nenhuma das opções acima, escreva assim mesmo. Nós identificamos o encaminhamento.</p>
+    </div>
+    <a class="button" href="mailto:comercial@vpc-websistemas.com.br?subject=Contato%20—%20VPC-WEBSISTEMAS">comercial@vpc-websistemas.com.br →</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="shell footer-inner">
+    <div class="footer-brand">
+      <img src="/simbolo-vpc-satelite.png" width="64" height="64" alt="">
+      <span><strong>VPC-WEBSISTEMAS E GEOINFORMAÇÃO</strong><small>Inteligência em geoprocessamento e sensoriamento remoto.</small></span>
+    </div>
+    <p>Vinicius do Prado Capanema Ltda.</p>
+    <p>CNPJ 57.286.005/0001-40 · © 2026 · Todos os direitos reservados. · <a class="footer-link" href="/privacidade">Política de Privacidade</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
