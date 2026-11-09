@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../vpc_geoser_websistemas_e_geoinformacao-ADM"
 		}
 	],
 	"settings": {

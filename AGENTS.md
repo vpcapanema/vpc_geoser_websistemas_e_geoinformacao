@@ -195,3 +195,13 @@ Constraints for each level:
 - MUST flag best practices and explain trade-offs
 - MUST still execute the user's choice if they disagree with a suggestion
 <!-- END AWS Agent Toolkit rules -->
+
+
+## Tabelas: layout padrão obrigatório
+
+Antes de iniciar qualquer tarefa, ler `.github/instructions/tabelas-padrao.instructions.md`
+e `docs/prompt-layout-padrao-tabelas.md`. Qualquer conteúdo que inclua tabela deve
+nascer já com o layout padrão (título, barra de filtros com botões de grupos de
+colunas, tabela com seletores e zebrado, barra de botões de controle, paginador e
+contador). Antes de codar a tabela, é obrigatório levantar as referências de cor e
+tipografia do sistema onde ela será implementada e usá-las.
