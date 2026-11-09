@@ -1,9 +1,9 @@
 # Árvore completa do repositório
 
-**Gerado em:** 2026-11-09T13:45:12-03:00  
+**Gerado em:** 2026-11-09T13:55:59-03:00  
 **Raiz:** `R:\vpc_geoser_websistemas_e_geoinformacao`  
 **Diretórios inventariados:** 76  
-**Arquivos inventariados:** 580  
+**Arquivos inventariados:** 581  
 **Tamanho inventariado:** 293.5 MiB  
 **Exclusão intencional:** conteúdo interno de `.git/`, `node_modules/`, `.next/`, `.vinext/`, `.wrangler/` e `dist/`, por serem metadados, dependências ou artefatos gerados.
 
@@ -20,7 +20,7 @@
 | `.py` | 7 |
 | `.docx` | 6 |
 | `.txt` | 5 |
-| `.ts` | 3 |
+| `.ts` | 4 |
 | `.css` | 3 |
 | `[sem extensão]` | 2 |
 | `.ps1` | 2 |
@@ -46,7 +46,7 @@
 | `.gitignore` | arquivo | 1 | 115 B |
 | `.vscode/` | diretório | 3 | 3.6 KiB |
 | `AGENTS.md` | arquivo | 1 | 15.1 KiB |
-| `ARVORE_COMPLETA_REPOSITORIO.md` | arquivo | 1 | 45.3 KiB |
+| `ARVORE_COMPLETA_REPOSITORIO.md` | arquivo | 1 | 45.7 KiB |
 | `assets/` | diretório | 175 | 71.0 MiB |
 | `backup/` | diretório | 10 | 136.5 KiB |
 | `CLAUDE.md` | arquivo | 1 | 6.6 KiB |
@@ -68,7 +68,7 @@
 | `PLANO_PUBLICACAO_E_INFRAESTRUTURA_OFICIAL_VPC.md` | arquivo | 1 | 2.4 KiB |
 | `README.md` | arquivo | 1 | 3.6 KiB |
 | `scripts/` | diretório | 7 | 49.8 KiB |
-| `site/` | diretório | 82 | 14.5 MiB |
+| `site/` | diretório | 83 | 14.5 MiB |
 | `vpc-geoser_websistemas_e_geoinformacao.code-workspace` | arquivo | 1 | 163 B |
 
 ## Estrutura completa
@@ -715,8 +715,9 @@ vpc_geoser_websistemas_e_geoinformacao/
 │   ├── .oxfmtrc.json (260 B)
 │   ├── .oxlintrc.json (1.4 KiB)
 │   ├── cspell.json (2.1 KiB)
+│   ├── middleware.ts (374 B)
 │   ├── next-env.d.ts (194 B)
-│   ├── next.config.ts (104 B)
+│   ├── next.config.ts (105 B)
 │   ├── package-lock.json (186.7 KiB)
 │   ├── package.json (1.0 KiB)
 │   ├── tsconfig.json (671 B)
@@ -724,7 +725,7 @@ vpc_geoser_websistemas_e_geoinformacao/
 │   └── vite.config.ts (1.8 KiB)
 ├── .gitignore (115 B)
 ├── AGENTS.md (15.1 KiB)
-├── ARVORE_COMPLETA_REPOSITORIO.md (45.3 KiB)
+├── ARVORE_COMPLETA_REPOSITORIO.md (45.7 KiB)
 ├── CLAUDE.md (6.6 KiB)
 ├── CONTEXTO_CODEX_VPC_WEBSISTEMAS.md (15.5 KiB)
 ├── desktop.ini (71 B)
