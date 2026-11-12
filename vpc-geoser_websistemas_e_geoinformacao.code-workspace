@@ -1,13 +1,10 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../vpc_geoser_websistemas_e_geoinformacao-ADM"
-		}
-	],
-	"settings": {
-		"r.lsp.promptToInstall": false
-	}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "r.lsp.promptToInstall": false
+  }
 }

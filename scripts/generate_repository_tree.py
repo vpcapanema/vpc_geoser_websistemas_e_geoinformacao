@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "ARVORE_COMPLETA_REPOSITORIO.md"
-EXCLUDED_DIRS = {".git", ".next", ".vinext", ".wrangler", "dist", "node_modules"}
+EXCLUDED_DIRS = {".git", ".next", ".vinext", ".wrangler", "dist", "node_modules", "tmp"}
 
 
 def included(path: Path) -> bool:
@@ -55,7 +55,7 @@ def main() -> None:
         f"**Diretórios inventariados:** {len(directories)}  ",
         f"**Arquivos inventariados:** {len(files)}  ",
         f"**Tamanho inventariado:** {human_size(total_size)}  ",
-        "**Exclusão intencional:** conteúdo interno de `.git/`, `node_modules/`, `.next/`, `.vinext/`, `.wrangler/` e `dist/`, por serem metadados, dependências ou artefatos gerados.",
+        "**Exclusão intencional:** conteúdo interno de `.git/`, `node_modules/`, `.next/`, `.vinext/`, `.wrangler/`, `dist/` e `tmp/`, por serem metadados, dependências ou artefatos gerados.",
         "",
         "## Distribuição por extensão",
         "",
@@ -87,7 +87,7 @@ def main() -> None:
         "```",
         "",
     ])
-    OUTPUT.write_text("\n".join(lines), encoding="utf-8")
+    OUTPUT.write_text("\n".join(line.rstrip() for line in lines), encoding="utf-8")
     print(f"Gerado: {OUTPUT}")
     print(f"Diretórios: {len(directories)} | Arquivos: {len(files)} | Tamanho: {human_size(total_size)}")
 

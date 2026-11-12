@@ -1,6 +1,8 @@
 # OS junk
 .DS_Store
 Thumbs.db
+desktop.ini
+/tmp/
 
 # env / secrets
 .env

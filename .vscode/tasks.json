@@ -21,6 +21,33 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "VPC principal: publicar producao (commit -> Git -> deploy -> saude -> navegador)",
+      "detail": "Gera mensagem individual do diff staged, faz commit, sincroniza Git, publica, verifica saude e abre o navegador; logs com semaforo.",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/publish-production.ps1"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "focus": true,
+        "showReuseMessage": false
+      },
+      "runOptions": {
+        "instanceLimit": 1
+      }
     }
   ]
 }

@@ -1,29 +1,29 @@
 # Árvore completa do repositório
 
-**Gerado em:** 2026-11-09T13:55:59-03:00  
-**Raiz:** `R:\vpc_geoser_websistemas_e_geoinformacao`  
-**Diretórios inventariados:** 76  
-**Arquivos inventariados:** 581  
-**Tamanho inventariado:** 293.5 MiB  
-**Exclusão intencional:** conteúdo interno de `.git/`, `node_modules/`, `.next/`, `.vinext/`, `.wrangler/` e `dist/`, por serem metadados, dependências ou artefatos gerados.
+**Gerado em:** 2026-11-12T11:27:37-03:00
+**Raiz:** `R:\vpc_geoser_websistemas_e_geoinformacao`
+**Diretórios inventariados:** 79
+**Arquivos inventariados:** 589
+**Tamanho inventariado:** 293.5 MiB
+**Exclusão intencional:** conteúdo interno de `.git/`, `node_modules/`, `.next/`, `.vinext/`, `.wrangler/`, `dist/` e `tmp/`, por serem metadados, dependências ou artefatos gerados.
 
 ## Distribuição por extensão
 
 | Extensão | Quantidade |
 |---|---:|
 | `.png` | 444 |
-| `.md` | 39 |
+| `.md` | 41 |
 | `.tsx` | 21 |
 | `.svg` | 16 |
-| `.json` | 8 |
+| `.json` | 11 |
 | `.pdf` | 8 |
 | `.py` | 7 |
 | `.docx` | 6 |
+| `.ps1` | 5 |
 | `.txt` | 5 |
 | `.ts` | 4 |
 | `.css` | 3 |
 | `[sem extensão]` | 2 |
-| `.ps1` | 2 |
 | `.csv` | 2 |
 | `.ico` | 2 |
 | `.ttf` | 2 |
@@ -43,17 +43,17 @@
 |---|---|---:|---:|
 | `.git/` | diretório | 0 | 0 B |
 | `.github/` | diretório | 1 | 3.6 KiB |
-| `.gitignore` | arquivo | 1 | 115 B |
-| `.vscode/` | diretório | 3 | 3.6 KiB |
+| `.gitignore` | arquivo | 1 | 133 B |
+| `.vscode/` | diretório | 3 | 4.7 KiB |
 | `AGENTS.md` | arquivo | 1 | 15.1 KiB |
-| `ARVORE_COMPLETA_REPOSITORIO.md` | arquivo | 1 | 45.7 KiB |
+| `ARVORE_COMPLETA_REPOSITORIO.md` | arquivo | 1 | 46.3 KiB |
 | `assets/` | diretório | 175 | 71.0 MiB |
 | `backup/` | diretório | 10 | 136.5 KiB |
 | `CLAUDE.md` | arquivo | 1 | 6.6 KiB |
 | `CONTEXTO_CODEX_VPC_WEBSISTEMAS.md` | arquivo | 1 | 15.5 KiB |
 | `desktop.ini` | arquivo | 1 | 71 B |
 | `DIRETRIZES_ENGENHARIA_OFICIAL_VPC.md` | arquivo | 1 | 2.9 KiB |
-| `docs/` | diretório | 2 | 38.0 KiB |
+| `docs/` | diretório | 3 | 39.7 KiB |
 | `docs_aplicacoes/` | diretório | 230 | 94.4 MiB |
 | `docs_aplicacoes.rar` | arquivo | 1 | 89.5 MiB |
 | `documentacao/` | diretório | 3 | 4.9 MiB |
@@ -67,9 +67,10 @@
 | `output/` | diretório | 34 | 12.7 MiB |
 | `PLANO_PUBLICACAO_E_INFRAESTRUTURA_OFICIAL_VPC.md` | arquivo | 1 | 2.4 KiB |
 | `README.md` | arquivo | 1 | 3.6 KiB |
-| `scripts/` | diretório | 7 | 49.8 KiB |
-| `site/` | diretório | 83 | 14.5 MiB |
-| `vpc-geoser_websistemas_e_geoinformacao.code-workspace` | arquivo | 1 | 163 B |
+| `scripts/` | diretório | 8 | 50.4 KiB |
+| `site/` | diretório | 89 | 14.5 MiB |
+| `tmp/` | diretório | 0 | 0 B |
+| `vpc-geoser_websistemas_e_geoinformacao.code-workspace` | arquivo | 1 | 257 B |
 
 ## Estrutura completa
 
@@ -82,7 +83,7 @@ vpc_geoser_websistemas_e_geoinformacao/
 ├── .vscode/
 │   ├── get-image-size.ps1 (294 B)
 │   ├── start-dev-and-open.ps1 (2.8 KiB)
-│   └── tasks.json (567 B)
+│   └── tasks.json (1.6 KiB)
 ├── assets/
 │   └── identidade-visual/
 │       ├── assinaturas-verticais/
@@ -300,7 +301,8 @@ vpc_geoser_websistemas_e_geoinformacao/
 │       └── LEIA-ME.txt (166 B)
 ├── docs/
 │   ├── prompt-inicial-implantacao-tabelas.md (24.5 KiB)
-│   └── prompt-layout-padrao-tabelas.md (13.6 KiB)
+│   ├── prompt-layout-padrao-tabelas.md (13.6 KiB)
+│   └── tasks-producao.md (1.7 KiB)
 ├── docs_aplicacoes/
 │   ├── prints_telas/
 │   │   ├── FAD-Stats/
@@ -615,13 +617,16 @@ vpc_geoser_websistemas_e_geoinformacao/
 │   ├── generate_brand_derivatives.py (5.2 KiB)
 │   ├── generate_favicon_assets.py (1.5 KiB)
 │   ├── generate_monochrome_logos.py (5.9 KiB)
-│   └── generate_repository_tree.py (3.6 KiB)
+│   ├── generate_repository_tree.py (3.7 KiB)
+│   └── publish-production.ps1 (595 B)
 ├── site/
 │   ├── .git/ [conteúdo técnico gerado omitido]
 │   ├── .next/ [conteúdo técnico gerado omitido]
 │   ├── .openai/
 │   │   └── hosting.json (91 B)
 │   ├── .vinext/ [conteúdo técnico gerado omitido]
+│   ├── .vscode/
+│   │   └── tasks.json (1.1 KiB)
 │   ├── .wrangler/ [conteúdo técnico gerado omitido]
 │   ├── app/
 │   │   ├── contato/
@@ -645,10 +650,12 @@ vpc_geoser_websistemas_e_geoinformacao/
 │   │   ├── layout.tsx (1.4 KiB)
 │   │   ├── motion.tsx (10.0 KiB)
 │   │   ├── page.tsx (12.9 KiB)
-│   │   ├── site-footer.tsx (1.9 KiB)
-│   │   ├── site-nav.tsx (5.4 KiB)
+│   │   ├── site-footer.tsx (2.1 KiB)
+│   │   ├── site-nav.tsx (5.7 KiB)
 │   │   └── territory-map.tsx (4.3 KiB)
 │   ├── dist/ [conteúdo técnico gerado omitido]
+│   ├── docs/
+│   │   └── tasks-producao.md (2.7 KiB)
 │   ├── node_modules/ [conteúdo técnico gerado omitido]
 │   ├── outputs/
 │   │   ├── linkedin-lancamento-vpc/
@@ -711,6 +718,11 @@ vpc_geoser_websistemas_e_geoinformacao/
 │   │   ├── og-vpc.png (82.2 KiB)
 │   │   ├── simbolo-vpc-satelite.png (781.4 KiB)
 │   │   └── vinicius-capanema.jpg (284.8 KiB)
+│   ├── scripts/
+│   │   ├── production.json (221 B)
+│   │   ├── publish-production.ps1 (15.1 KiB)
+│   │   ├── publish-sites.ps1 (5.7 KiB)
+│   │   └── sites-deployment.schema.json (536 B)
 │   ├── .gitignore (398 B)
 │   ├── .oxfmtrc.json (260 B)
 │   ├── .oxlintrc.json (1.4 KiB)
@@ -723,9 +735,10 @@ vpc_geoser_websistemas_e_geoinformacao/
 │   ├── tsconfig.json (671 B)
 │   ├── tsconfig.tsbuildinfo (189.6 KiB)
 │   └── vite.config.ts (1.8 KiB)
-├── .gitignore (115 B)
+├── tmp/ [conteúdo técnico gerado omitido]
+├── .gitignore (133 B)
 ├── AGENTS.md (15.1 KiB)
-├── ARVORE_COMPLETA_REPOSITORIO.md (45.7 KiB)
+├── ARVORE_COMPLETA_REPOSITORIO.md (46.3 KiB)
 ├── CLAUDE.md (6.6 KiB)
 ├── CONTEXTO_CODEX_VPC_WEBSISTEMAS.md (15.5 KiB)
 ├── desktop.ini (71 B)
@@ -738,5 +751,5 @@ vpc_geoser_websistemas_e_geoinformacao/
 ├── MISSAO_VPC.md (17.5 KiB)
 ├── PLANO_PUBLICACAO_E_INFRAESTRUTURA_OFICIAL_VPC.md (2.4 KiB)
 ├── README.md (3.6 KiB)
-└── vpc-geoser_websistemas_e_geoinformacao.code-workspace (163 B)
+└── vpc-geoser_websistemas_e_geoinformacao.code-workspace (257 B)
 ```
